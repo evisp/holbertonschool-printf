@@ -11,13 +11,13 @@
  */
 int (*find_handler(char format_char, specifier_t specifiers[]))(va_list)
 {
-    unsigned int j = 0;
+    unsigned int i = 0;
 
-    while (specifiers[j].specifier != NULL)
+    while (specifiers[i].specifier != NULL)
     {
-        if (format_char == specifiers[j].specifier[0])
-            return (specifiers[j].handler);
-        j++;
+        if (format_char == specifiers[i].specifier[0])
+            return (specifiers[i].handler);
+        i++;
     }
     return (NULL);
 }
@@ -87,6 +87,8 @@ int _printf(const char *format, ...)
     specifier_t specifiers[] = {
         {"c", handle_char},
         {"s", handle_string},
+		{"d", handle_int},   
+        {"i", handle_int},   
         {NULL, NULL}
     };
 
