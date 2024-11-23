@@ -3,22 +3,21 @@
 #include <stdarg.h>
 
 /**
- * struct print - struct for conversion specifiers
- * @print: struct print
- * @p: print function specified
+ * struct specifier_t - Struct for format specifiers and their handlers
+ * @specifier: The format specifier (e.g., "c", "s", "d")
+ * @handler: Pointer to the function that handles the specifier
  */
-typedef struct print
+typedef struct specifier_t
 {
-  char *print;
-  int (*p)();
-} print_t;
+	char *specifier;
+    int (*handler)(va_list args);
+} specifier_t;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
 
-int p_char(va_list arg);
-int p_str(va_list arg);
-int p_dec(va_list arg);
-int p_int(va_list arg);
+int handle_char(va_list args);
+int handle_string(va_list args);
+int handle_int(va_list args);
 
 #endif
